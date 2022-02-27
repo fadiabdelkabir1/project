@@ -1,0 +1,13 @@
+.App {
+    text-align: center;
+  }
+  body{
+    display: flex;
+  }
+  html {
+    min-height: 100%;
+    background-image: url(./home.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }

@@ -1,0 +1,59 @@
+
+.accountinfo{
+    display: flex;
+    flex-direction: column;
+    vertical-align: middle;
+    justify-content: center;
+    
+
+}
+.whatever{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);}
+.inforows{
+    display: flex;
+    flex-direction: row;
+}
+.card{
+    background-color: transparent;
+    border-color: transparent;
+}
+.tds-text--500{
+    font-weight: 500 !important;
+}
+.pageheader{
+    color:#181b21;  
+    font-size: 25px !important;
+    
+}
+h5{
+    color:#5c5d61;
+    font-size: 15px !important;
+}
+.card-body>p{
+    color:#181b21 !important;
+    font-size: 15px !important;
+    margin-left: 0 !important;
+}
+.card-body>Button{
+    color:#5c5d61;
+    font-size: 15px !important;
+    width: 60px;
+    margin-left: 0;
+    padding:0;
+}
+.card-body>Button:hover{
+    color:#5c5d61;
+    background-color: transparent;
+
+}
+.card-body>Button:focus{
+    color:#5c5d61;
+    background-color: transparent;
+    
+
+}
+.inputedit{margin-bottom: 6px;}
