@@ -6,17 +6,17 @@ import { btnReset, v } from "../../styles/variables";
 export const SSidebar = styled.div`
     width: ${({ isOpen }) => (!isOpen ? `auto` : v.sidebarWidth)};
     background: ${({ theme }) => theme.bg};
-    height: 100vh;
+    height: 98vh !important;
     padding: ${v.lgSpacing};
-
-    position: relative;
+    position: sticky;
+    margin-right:25px;
 `;
 
 export const SSidebarButton = styled.button`
     ${btnReset};
     position: absolute;
-    top: ${v.xxlSpacing};
-    right: ${({ isOpen }) => (isOpen ? `-16px` : `-40px`)};
+    top: 95px;
+    right: ${({ isOpen }) => (isOpen ? `0px` : `0px`)};
     width: 32px;
     height: 32px;
     border-radius: 50%;
@@ -59,6 +59,7 @@ export const SSearch = styled.div`
         background: transparent;
     }
     display: flex;
+    
 `;
 
 export const SSearchIcon = styled.button`
@@ -66,7 +67,8 @@ export const SSearchIcon = styled.button`
     padding: calc(${v.mdSpacing} - 2px) ${v.mdSpacing};
     display: flex;
     cursor: pointer;
-    height:30px;
+    background-color: inherit;
+    height:50px;
     svg {
         font-size: 20px;
     }

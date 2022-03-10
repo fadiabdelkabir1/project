@@ -1,0 +1,43 @@
+
+.textcard{
+  display: flex;
+  width: 170px;
+  flex-direction: column;
+  justify-content: space-between;
+  
+  
+}
+
+.css-bhp9pd-MuiPaper-root-MuiCard-root{
+    display: flex;
+    height: 280px;
+    margin: 10px 10px !important;
+    background-color: transparent !important;
+
+}
+
+.css-bhp9pd-MuiPaper-root-MuiCard-root:hover{
+  background-color: white !important;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px !important;
+}
+
+.carousel-item{
+  max-width:"400px" !important;
+}
+.btnss{
+  padding-top: 0 !important;
+}
+.texts{padding-bottom: 0 !important;}
+
+.carousel-indicators [data-bs-target]{
+  background-color: rgb(58, 56, 56) !important;
+}
+
+
+.carousel-control-next-icon {
+  background-image: url(https://cdn2.iconfinder.com/data/icons/simple-arrows-essentials-glyph/48/Sed-23-512.png) !important}
+.carousel-control-prev-icon {
+  background-image: url(https://cdn2.iconfinder.com/data/icons/simple-arrows-essentials-glyph/48/Sed-23-512.png) !important;
+  -o-transform: rotate(180deg);   
+  transform: rotate(180deg);
+}

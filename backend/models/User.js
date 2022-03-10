@@ -11,6 +11,7 @@ const userSchema = schema({
   phone:Number,
   password:String,
   usertype:String,
+  profilepic:String,
   dateCreation:{
       type:Date,
       default:Date.now()

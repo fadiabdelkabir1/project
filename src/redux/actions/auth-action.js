@@ -25,7 +25,7 @@ export const registerHandler = (newUser) => async (dispatch) => {
     });
   } catch (error) {
     dispatch(errorHandler())
-    console.dir(error)
+    
 
   }
 };
@@ -43,7 +43,7 @@ export const loginHandler = (authUser) => async (dispatch) => {
     });
   } catch (error) {
     dispatch(errorHandler())
-    console.dir(error)
+    
 
   }
 }
@@ -55,7 +55,7 @@ export const logoutHandler = () => async (dispatch) => {
       type:LOUGOUT
     })
   } catch (error) {
-    console.log(error);
+    dispatch(errorHandler())
 
   }
 };
@@ -77,6 +77,6 @@ export const getAuthUser=()=> async (dispatch)=>{
 
   } catch (error) {
     dispatch(errorHandler())
-    console.dir(error)
+    
   }
 }

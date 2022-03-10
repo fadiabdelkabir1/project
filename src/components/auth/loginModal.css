@@ -6,11 +6,11 @@
     border-color: transparent;
 }
 .btn-primary:hover {
-    background-color: rgba(255, 255, 255, 0.219);
+    background-color: gray;
     border-color: transparent;
   }
 .btn-primary:focus{
-    background-color: rgba(255, 255, 255, 0.219);
+    background-color: gray;
     border-color: transparent;}
 .btn-secondary{
   background-color: transparent;

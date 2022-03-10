@@ -12,10 +12,12 @@ const isAuth = async (req, res, next) => {
     //extract the user from the token
     const decodedToken =await  jwt.verify(token, process.env.TOKENKEY); // => an object with the payload
 
-    const id = decodedToken.id;
+ 
     //find the user with this specific id in the db
-    const user = await User.findById(id);
-    res.status(200).json(user);
+    const user = await User.findById(decodedToken.id);
+    //check for the user
+    if (!user) return res.status(404).json({ msg: "user not found " });
+    //create user
     req.user = user;
     next();
   } catch (error) {

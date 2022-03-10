@@ -4,6 +4,9 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const isAuth = require("../middleware/isAuth");
+const multer=require("multer")
+const fs=require("fs");
+const rimraf = require("rimraf");
 
 //@role: testing
 //@url: http://localhost:5000/api/user/test
@@ -33,6 +36,7 @@ router.post("/register", async (req, res) => {
     }
     //2-create a hashed password
     const hashedPassword = await bcrypt.hash(password, 10);
+    const deafultpic="/images/defaultphoto.jpg"
     //3-create the new user
     user = new User({
       fullname:fullname,
@@ -40,12 +44,17 @@ router.post("/register", async (req, res) => {
       email: email,
       phone:phone,
       password: hashedPassword,
+      profilepic:deafultpic,
       usertype:usertype
     });
     //4 save the user in the db
     await user.save();
     //step 2: create a token (auth)
 
+    var dir=__dirname+`./../../public/images/imagesfor${user.fullname+user._id}`;
+    if (!fs.existsSync(dir)){
+      fs.mkdirSync( dir);
+  }
     const token = jwt.sign(
       { id: user._id, fullname: user.fullname },
       process.env.TOKENKEY
@@ -104,11 +113,84 @@ router.get('/all',async(req,res)=>{
     try {
         const users= await User.find()
         res.send(users)
-
     } catch (error) {
         res.status(500).json({ msg: "catch", msg: error.message });
-
     }
 })
+
+//@role: get  the user by id
+//@url: http://localhost:5000/api/user/getuser:id
+router.get('/getuser:id',async(req,res)=>{
+  const id = req.params.id;
+  try {
+    const theuser= await User.findById(id)
+      res.send(theuser)
+  } catch (error) {
+      res.status(500).json({ msg: "catch", msg: error.message });
+  }
+})
+
+/* //@role :update  users
+//@url:http://localhost:5000/api/user/edit/:id
+//public/private
+
+*/
+router.put("/edit/:id", async (req, res) => {
+  const id = req.params.id;
+  try {
+    const thenewuser=req.body
+    if(thenewuser.password<10)
+    {thenewuser.password = await bcrypt.hash(thenewuser.password, 10)}
+    const usered = await User.findByIdAndUpdate(id, {$set: thenewuser })
+    res.status(200).json(usered)
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+});
+
+//@role :Delete user
+//@url:http://localhost:5000/api/user/delete/:id
+router.delete('/delete/:id', async(req,res)=>{
+  const id=req.params.id
+  let userdelete = await User.findById(id);
+  let dir=__dirname+`./../../public/images/imagesfor${userdelete.fullname+userdelete._id}`
+  if (fs.existsSync(dir)){
+    fs.rmdir(dir, { recursive: true }, (err) => {
+      if (err) {
+          throw err;
+      };
+  });;
+}
+  
+  await User.findByIdAndRemove(id)
+  .then(
+    User=>{
+          if(userdelete){return res.status(200).json({msg:`the user is deleted ${userdelete}`})}
+          else{
+              return res.status(404).json({msg:'user not found'})
+          } 
+      }
+
+  )
+  .catch(err=>{return res.status(500).json({error:err})})
+}) 
+
+ 
+const filestorageengine=multer.diskStorage({
+  destination:(req,file,cb)=>{
+    let dir=__dirname+`./../../public/images/imagesfor${req.headers.fullname+req.headers.id}`
+    cb(null,dir);
+  },
+  filename:(req,file,cb)=>{
+    cb(null,req.headers.fullname+req.headers.id+'.jpg');
+  }
+})
+const upload = multer({storage:filestorageengine})
+//@role :upload user image
+//@url:http://localhost:5000/api/user/profileimage
+router.post("/profileimage",upload.single("file"), async(req,res)=>{
+  console.log(req.headers.fullname,req.headers.id)
+  res.send("file uploaded")
+}) 
 
 module.exports = router;

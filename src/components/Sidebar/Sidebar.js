@@ -33,7 +33,10 @@ import { ThemeContext } from "./../../App";
 import { useLocation } from "react-router-dom";
 import { logoutHandler } from "./../../redux/actions/auth-action";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+
 const Sidebar = () => {
+    const user = useSelector((state) => state.auth.user);
     const searchRef = useRef(null);
     const { setTheme, theme } = useContext(ThemeContext);
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -50,11 +53,14 @@ const Sidebar = () => {
             // search functionality
         }
     };
+    const tomaplist=(user.usertype==="Landlord")? linksArraylandlord:linksarrayloaner
+     
 
     return (
         <SSidebar isOpen={sidebarOpen}>
             <>
-                <SSidebarButton isOpen={sidebarOpen} onClick={() => setSidebarOpen((p) => !p)}>
+           
+                <SSidebarButton isOpen={sidebarOpen} onClick={() => {setSidebarOpen((p) => !p)}}>
                     <AiOutlineLeft />
                 </SSidebarButton>
             </>
@@ -78,7 +84,7 @@ const Sidebar = () => {
                 />
             </SSearch>
             <SDivider />
-            {linksArray.map(({ icon, label, to }) => (
+            {tomaplist.map(({ icon, label, to }) => (
                 <SLinkContainer key={label} isActive={pathname === to}>
                     <SLink to={to} style={!sidebarOpen ? { width: `fit-content` } : {}}>
                         <SLinkIcon>{icon}</SLinkIcon>
@@ -119,27 +125,32 @@ const Sidebar = () => {
     );
 };
 
-const linksArray = [
+
+
+const linksArraylandlord = [
     {
-        label: "Home",
+        label: "Manage Offers",
+        icon: <MdOutlineAnalytics />,
+        to: "/"
+    },
+    {
+        label: "Add Offers",
+        icon: <AiOutlineApartment />,
+        to: "/addposte"
+    },
+];
+
+const linksarrayloaner=[
+    {
+        label: "Map Search",
         icon: <AiOutlineHome />,
         to: "/"
     },
     {
-        label: "Statistics",
-        icon: <MdOutlineAnalytics />,
-        to: "/statistics"
-    },
-    {
-        label: "Customers",
+        label: "List Search",
         icon: <BsPeople />,
-        to: "/customers"
+        to: "/Listsearch"
     },
-    {
-        label: "Diagrams",
-        icon: <AiOutlineApartment />,
-        to: "/diagrams"
-    },
-];
+]
 
 export default Sidebar;

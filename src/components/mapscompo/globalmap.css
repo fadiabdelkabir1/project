@@ -1,0 +1,36 @@
+.mapcontainer{
+    position: relative !important;
+    right:28px;
+    width: 98.5%;
+    height: 85%;
+    padding: 0px !important;
+    margin:0px !important;
+}
+.sc-ksdxgE{
+    padding: 0px !important;
+    margin:0px !important;
+}
+.leaflet-container,.leaflet-crosshair{
+    padding: 0px !important;
+    margin:0px !important;
+    width: 101% ;
+    height: 100%;
+}
+.sidebar{
+    padding:15px;
+    position:-webkit-sticky !important;
+    position:sticky !important;
+    height: 17%;
+    width: 93vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: white !important;
+}
+#UpdateButton{
+    background-color: aliceblue !important;
+}
+#UpdateButton:hover{
+    background-color: gray !important;
+}
+

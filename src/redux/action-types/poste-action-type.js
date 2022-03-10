@@ -1,0 +1,7 @@
+export const ADD_POSTE="ADD_POSTE"
+export const ADD_PHOTOS="ADD_PHOTOS"
+export const GET_POSTES="GET_POSTES"
+export const DELETE_POSTE="DELETE_POSTE"
+export const FIND_POSTE="FIND_POSTE"
+export const EDIT_POSTE="EDIT_POSTE"
+export const GET_ALLPOSTES="GET_ALLPOSTES"

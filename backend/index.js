@@ -16,6 +16,7 @@ app.use(cors())
 app.use(express.json())
 //routes
 app.use('/api/user', require('./routes/user') )
+app.use('/api/poste', require('./routes/poste') )
 app.listen(port,(err)=>{
     err? console.log(err):console.log('the server is up and running ....');
 })

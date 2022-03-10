@@ -1,0 +1,37 @@
+Button{
+    color:#5c5d61 !important;
+}
+Button:hover{
+    color:white !important;
+    background-color: #5c5d61 !important;
+
+}
+Button:focus{
+    color:white !important;
+    background-color: #5c5d61 !important;
+    
+}
+
+.global{
+    margin: 0;
+    margin-left: 25px !important;
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    
+    
+}
+.imgdiv{
+    display: flex;
+    flex-direction: row;
+    max-width: fit-content;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+.imgdiv>img{
+    margin: 20px;
+    max-width: 150px;
+    max-height: 150px;
+}

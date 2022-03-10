@@ -15,6 +15,7 @@ export default function Example() {
   const handleShow = () => setShow(true);
   //local states to get the payload data from the user
   const [fullname, setFullname] = useState("");
+  const [adress, setAdress] = useState("");
   const [email, setemail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setpassword] = useState("");
@@ -23,7 +24,7 @@ export default function Example() {
   const dispatch = useDispatch();
   const registerUser = (e) => {
       e.preventDefault()
-    const newUser = { fullname, email,phone, password,usertype };
+    const newUser = { fullname,adress, email,phone, password,usertype };
     dispatch(registerHandler(newUser));
     handleClose()
   };
@@ -47,6 +48,13 @@ export default function Example() {
                 type="text"
                 placeholder="Enter your Name"
                 onChange={(e) => setFullname(e.target.value)}
+                required
+              />
+              <Form.Label>Adress</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter your Adress"
+                onChange={(e) => setAdress(e.target.value)}
                 required
               />
               <Form.Label>Email address</Form.Label>

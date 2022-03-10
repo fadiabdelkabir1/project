@@ -7,8 +7,28 @@
     
 
 }
+.inputsection{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-left: 15px;
+
+}
+.profilephoto{
+    max-width: 200px !important;
+    max-height: 200px !important;
+    
+}
+.photodivision{
+    display: flex;
+    flex-direction: row;
+    vertical-align: middle;
+    justify-content: left;
+}
 .whatever{
     margin: 0;
+    margin-left: 25px !important;
     position: absolute;
     top: 50%;
     -ms-transform: translateY(-50%);
@@ -32,28 +52,66 @@
 h5{
     color:#5c5d61;
     font-size: 15px !important;
+    
+}
+.card-body{
+    padding: 10px !important;
+    height: 90px;
+
 }
 .card-body>p{
     color:#181b21 !important;
     font-size: 15px !important;
     margin-left: 0 !important;
+    margin-left: 5px !important;
+    
 }
-.card-body>Button{
+hr{
+    margin: 15px !important;
+}
+.photodivision>.inputsection>Button{
+    height: 40px;
+}
+.card-body>Button,.photodivision>.inputsection>Button{
     color:#5c5d61;
     font-size: 15px !important;
     width: 60px;
     margin-left: 0;
     padding:0;
 }
-.card-body>Button:hover{
+.card-body>Button:hover,.photodivision>.inputsection>Button:hover{
     color:#5c5d61;
     background-color: transparent;
 
 }
-.card-body>Button:focus{
+.card-body>Button:focus,.photodivision>.inputsection>Button:focus{
     color:#5c5d61;
     background-color: transparent;
     
 
 }
 .inputedit{margin-bottom: 6px;}
+#deletebutton{
+    color:#5c5d61;
+    font-size: 17px !important;
+    width: 150px;
+    margin-left: 0;
+    padding:0;}
+#deletebutton:hover{
+    color:#5c5d61;
+    background-color: transparent;
+
+}
+#deletebutton:focus{
+    color:#5c5d61;
+    background-color: transparent;
+    
+
+}
+.md-form{
+    height: 40px !important;
+}
+#file{
+    width:100% !important;
+    
+}
