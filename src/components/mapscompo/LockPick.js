@@ -1,13 +1,7 @@
-import React,{ useState } from 'react'
-import {
-  MapContainer,
-  Marker,
-  Popup,
-  TileLayer,
-  useMapEvents,
-} from 'react-leaflet'
+import React,{ useEffect,useState } from 'react'
+import {Marker,Popup,  useMapEvents} from 'react-leaflet'
 
-function LocationMarker({center,Position}) {
+function LocationMarker({Position}) {
   const [position, setPosition] = useState(Position)
   const map = useMapEvents({
     click() {
@@ -18,7 +12,10 @@ function LocationMarker({center,Position}) {
       map.flyTo(Position, map.getZoom())
     },
   })
-console.log(position,Position)
+  useEffect(() => {
+    map.flyTo(Position, map.getZoom())
+  }, [map,Position])
+  
   return (<>{position === null ?    <></> :
   ( <Marker position={position}><Popup>You are here</Popup></Marker> )}</>)
 }

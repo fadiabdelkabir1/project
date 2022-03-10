@@ -165,7 +165,8 @@ var infofeatures;
                 </Form.Select>
                 </Form.Group>
             </Row>
-            <Row className="mb-3">Coordinates
+            <Row className="mb-3">
+            <Form.Label>Coordinates</Form.Label>
                 <Form.Group as={Col} >
                 <Form.Label>Latidute</Form.Label>
                 <Form.Control type="number" placeholder="55,55" onChange={(e)=>setLatidute(e.target.value)}/>

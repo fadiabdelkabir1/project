@@ -60,9 +60,7 @@ const Sidebar = () => {
         <SSidebar isOpen={sidebarOpen}>
             <>
            
-                <SSidebarButton isOpen={sidebarOpen} onClick={() => {setSidebarOpen((p) => !p)}}>
-                    <AiOutlineLeft />
-                </SSidebarButton>
+                
             </>
             <SLogo style={{display:"flex",flexDirection:"row"}}>
             <img src={logoSVG} alt="logo" />                    
@@ -70,19 +68,9 @@ const Sidebar = () => {
                     {sidebarOpen? <p style={theme === "dark" ? { color: "white" } : {color: "black"}}>K e r i t y</p>:<></>}
                     </li>
             </SLogo>
-            <SSearch
-                onClick={searchClickHandler}
-                style={!sidebarOpen ? { width: `fit-content` } : {}}
-            >
-                <SSearchIcon>
-                    <AiOutlineSearch />
-                </SSearchIcon>
-                <input
-                    ref={searchRef}
-                    placeholder="Search"
-                    style={!sidebarOpen ? { width: 0, padding: 0 } : {}}
-                />
-            </SSearch>
+            <SSidebarButton isOpen={sidebarOpen} onClick={() => {setSidebarOpen((p) => !p)}}>
+                    <AiOutlineLeft />
+                </SSidebarButton>
             <SDivider />
             {tomaplist.map(({ icon, label, to }) => (
                 <SLinkContainer key={label} isActive={pathname === to}>

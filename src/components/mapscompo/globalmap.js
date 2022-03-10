@@ -33,46 +33,49 @@ function Globalmap() {
         setPrimaryLocation({lat:location.coordinates.lat,lng:location.coordinates.lng})
         setLat(location.coordinates.lat)
         setLng(location.coordinates.lng)
-    },[location.coordinates])
-function ManualLocation(){
-    setCenter({lat:Lat,lng:Lng})
-}
-function Relocate(){
-    setPosition(null)
-    setCenter(PrimaryLocation)
-}
-if(RadiusValue<10){setRadiusValue(10)}
-    const [PickerLat, setPickerLat] = useState(Lat)
-    const [PickerLng, setPickerLng] = useState(Lng)
-const pointVals = [[Lat, Lng]];
-  const pointMode = {
+    },[location.coordinates,Position])
+    function ManualLocation(){
+        setCenter({lat:Lat,lng:Lng})
+        setPosition({lat:Lat,lng:Lng})
+
+    }
+    function Relocate(){
+        setPosition(PrimaryLocation)
+        setCenter(PrimaryLocation)
+    }
+    if(RadiusValue<10){setRadiusValue(10)}
+        const [PickerLat, setPickerLat] = useState(Lat)
+        const [PickerLng, setPickerLng] = useState(Lng)
+    const pointVals = [[Lat, Lng]];
+    const pointMode = {
     banner: true,
     control: {
-      values: pointVals,
-      onClick: point =>
-      {setPickerLat(point[0]);setPickerLng(point[1]) }
+        values: pointVals,
+        onClick: point =>
+        {setPickerLat(point[0]);setPickerLng(point[1]) }
     }
-  };
-  const circleMode = {
+    };
+    const circleMode = {
     banner: false
-  };
+    };
   //
-  return (
+    return (
     <div className='mapcontainer'>
         {location.coordinates.lat? <MapContainer  center={{lat:location.coordinates.lat,lng:location.coordinates.lng}}  zoom={zoom_level}  >
     <TileLayer url={inof.maptiler.url} attribution={inof.maptiler.attribution}></TileLayer>
+    <Propmarkers Max={Max} Min={Min} Proptype={Proptype} PrimaryLocation={PrimaryLocation} RadiusValue={RadiusValue} />
         <Circle center={center} color={"red"} radius={RadiusValue}  min={10} ></Circle>
-        {Position? <LocationMarker center={center} Position={Position} />:<Marker position={center}  ><Popup>You are here</Popup></Marker>}
-        <Propmarkers Max={Max} Min={Min} Proptype={Proptype} PrimaryLocation={PrimaryLocation} RadiusValue={RadiusValue} />
+            {Position==null? <Marker position={PrimaryLocation}  ><Popup>You are here</Popup></Marker>:<LocationMarker   Position={Position} />} 
         </MapContainer>:<></>}
-        <div className="sidebar" >
-                <Form style={{maxWidth:"20%"}}>
+        <div className="d-md-flex flex-md-row justify-content-between" style={{paddingTop:"15px"}} >
+                <Form className="p-2" style={{marginLeft:"auto",marginRight:"auto"}}>
                     <Form.Group   >
                     <Form.Label style={{fontSize:"15px",color:"#5c5d61"}} >Radius Range : {RadiusValue/1000}Km</Form.Label>
                     <FormRange style={{marginTop:"5px"}} value={RadiusValue} onChange={(e)=>setRadiusValue(e.target.value)} max="50000" />
                     </Form.Group>
                 </Form>
-            <Form style={{maxWidth:"20%"}}>
+            
+            <Form className="p-2" style={{marginLeft:"auto",marginRight:"auto"}}>
             <Form.Label style={{fontSize:"15px",color:"#5c5d61"}} >Dwelling Type</Form.Label>
                 <Form.Select defaultValue="All"  onChange={(e)=>setProptype(e.target.value)}  >
                     <option value="All">All</option>
@@ -82,14 +85,14 @@ const pointVals = [[Lat, Lng]];
                 </Form.Select>
             </Form>
 
-            <Form style={{maxWidth:"20%"}}>
+            <Form className="p-2" style={{marginLeft:"auto",marginRight:"auto"}}>
                     <Form.Label style={{fontSize:"15px",color:"#5c5d61"}} >Min-Max Price</Form.Label>
                     <InputGroup >
                         <FormControl defaultValue={Min} onChange={(e)=>setMin(e.target.value)} style={{fontSize:"15px",color:"#5c5d61"}}  />
                         <FormControl defaultValue={Max} onChange={(e)=>setMax(e.target.value)} style={{fontSize:"15px",color:"#5c5d61"}}  />
                     </InputGroup>
             </Form>
-            <Form style={{maxWidth:"40%"}} >
+            <Form className="p-2" style={{marginLeft:"auto",marginRight:"auto"}} >
                     <Form.Label style={{fontSize:"15px",color:"#5c5d61"}} >Change Location: Lat-Lng</Form.Label>
                     <InputGroup >
                         <FormControl  defaultValue={Lat} onChange={(e)=>setLat(e.target.value)} style={{fontSize:"15px",color:"#5c5d61"}}  />
@@ -100,14 +103,14 @@ const pointVals = [[Lat, Lng]];
                     </InputGroup>
             </Form>
             <Modal show={show}>
-                <Modal.Header >
+                <Modal.Header closeButton>
                 <Modal.Title>Pick Your Location</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                 <LocationPicker  pointMode={pointMode} circleMode={circleMode} style={{width:"600px !impotant",height:"400px !impotant"}}/>
                 </Modal.Body>
                 <Modal.Footer>
-                <Button id="UpdateButton" variant="primary" onClick={(e)=> {setShow(false)}}>Close</Button>
+                <Button id="closeButton" variant="primary" onClick={(e)=> {setShow(false)}}>Close Modal</Button>
                 <Button id="UpdateButton" variant="primary" onClick={(e)=> {setCenter({lat:PickerLat,lng:PickerLng});setPosition({lat:PickerLat,lng:PickerLng}); setShow(false)}}>Update Location</Button>
                 </Modal.Footer>
             </Modal>

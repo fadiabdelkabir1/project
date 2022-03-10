@@ -2,17 +2,17 @@
     margin: 5px !important;
     padding: 10px !important;
     right:80px !important;
-    height: 50px !important;
+    height: auto !important;
     font-size: 15px !important;
 
 }
 .visitbutton{
     padding: 5px !important;
     text-align: center !important;
-    margin: 0px !important;
+    margin-top: 12% !important;
+    margin-left:0 !important;
     font-size: 18px !important;
-    width: 60px !important;
-    height: 100%;
+    height: auto;
 }
 .infocontainer{
     display: flex;
@@ -21,5 +21,6 @@
 
 }
 .texcontainer{
-    margin-top: 9px;
+    margin-top: 6%;
+    width: 100%;
 }

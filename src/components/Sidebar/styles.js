@@ -6,26 +6,26 @@ import { btnReset, v } from "../../styles/variables";
 export const SSidebar = styled.div`
     width: ${({ isOpen }) => (!isOpen ? `auto` : v.sidebarWidth)};
     background: ${({ theme }) => theme.bg};
-    height: 98vh !important;
-    padding: ${v.lgSpacing};
+    height: 100vh !important;
+    padding: 1%;
     position: sticky;
-    margin-right:25px;
+    
 `;
 
 export const SSidebarButton = styled.button`
     ${btnReset};
-    position: absolute;
-    top: 95px;
-    right: ${({ isOpen }) => (isOpen ? `0px` : `0px`)};
-    width: 32px;
-    height: 32px;
+    padding: calc(${v.mdSpacing} - 2px) ${v.mdSpacing};
+    display: flex;
+    flex:end;
+    cursor: pointer;
+    background-color: inherit;
+    height:50px;
+    width: auto;
     border-radius: 50%;
     background: ${({ theme }) => theme.bg};
     box-shadow: 0 0 4px ${({ theme }) => theme.bg3}, 0 0 7px ${({ theme }) => theme.bg};
-    display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
 
     transform: ${({ isOpen }) => (!isOpen ? `rotate(180deg)` : `initial`)};
 `;
